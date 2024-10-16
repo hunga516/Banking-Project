@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace WindowsFormsApp1
 {
-    public partial class editAccount : Form
+    public partial class editAtm : Form
     {
-        public editAccount()
+        public editAtm()
         {
             InitializeComponent();
         }

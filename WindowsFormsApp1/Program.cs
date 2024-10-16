@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using WindowsFormsApp1.View;
+using Menu = WindowsFormsApp1.View.Menu;
 
 namespace WindowsFormsApp1
 {
@@ -16,7 +18,7 @@ namespace WindowsFormsApp1
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new editAccount());
+            Application.Run(new Menu());
         }
     }
 }

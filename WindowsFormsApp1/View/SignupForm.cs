@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace WindowsFormsApp1
 {
-    public partial class newAccount : Form
+    public partial class SignupForm : Form
     {
-        public newAccount()
+        public SignupForm()
         {
             InitializeComponent();
         }
@@ -45,6 +45,16 @@ namespace WindowsFormsApp1
         private void newAccount_Load(object sender, EventArgs e)
         {
              
+        }
+
+        private void label8_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label7_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -1,0 +1,384 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="db_bankingModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Admin_Table">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="username" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="password" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Customer_Table">
+          <Key>
+            <PropertyRef Name="CustomerNo" />
+          </Key>
+          <Property Name="CustomerNo" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="DOB" Type="nvarchar" MaxLength="50" />
+          <Property Name="PhoneNo" Type="nvarchar" MaxLength="50" />
+          <Property Name="Address" Type="nvarchar" MaxLength="100" />
+          <Property Name="City" Type="nvarchar" MaxLength="50" />
+          <Property Name="Picture" Type="image" />
+          <Property Name="Balance" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="Birth" Type="nvarchar" MaxLength="50" />
+          <Property Name="Email" Type="nvarchar" MaxLength="50" />
+          <Property Name="Gender" Type="nvarchar" MaxLength="50" />
+          <Property Name="Date" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Debit_Table">
+          <Key>
+            <PropertyRef Name="SNO" />
+          </Key>
+          <Property Name="SNO" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Date" Type="nvarchar" MaxLength="50" />
+          <Property Name="CustomerNo" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="OldBalance" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="Mode" Type="varbinary" MaxLength="50" />
+          <Property Name="DebitAmount" Type="decimal" Precision="18" Scale="0" />
+        </EntityType>
+        <EntityType Name="Depotist_Table">
+          <Key>
+            <PropertyRef Name="SNO" />
+          </Key>
+          <Property Name="SNO" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CustomerNo" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="OldBalance" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="Mode" Type="nvarchar" MaxLength="50" />
+          <Property Name="DipositAmout" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="Date" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Employee_Table">
+          <Key>
+            <PropertyRef Name="employee_id" />
+          </Key>
+          <Property Name="employee_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Birth" Type="nvarchar" MaxLength="50" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="50" />
+          <Property Name="Address" Type="nvarchar" MaxLength="4000" />
+          <Property Name="username" Type="nvarchar" MaxLength="50" />
+          <Property Name="password" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'db_banking.dbo.FD_Table' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="FD_Table">
+          <Key>
+            <PropertyRef Name="SNO" />
+          </Key>
+          <Property Name="SNO" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CustomerNo" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="Mode" Type="nvarchar" MaxLength="50" />
+          <Property Name="Rupees" Type="nvarchar" MaxLength="50" />
+          <Property Name="Period" Type="int" />
+          <Property Name="InterestRate" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="MaturityDate" Type="nvarchar" MaxLength="50" />
+          <Property Name="MaturityAmout" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="StartDate" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'db_banking.dbo.Transfer_Table' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Transfer_Table">
+          <Key>
+            <PropertyRef Name="SNO" />
+          </Key>
+          <Property Name="SNO" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Date" Type="nvarchar" MaxLength="50" />
+          <Property Name="CustomerNo" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Balance" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="ToTransfer" Type="decimal" Precision="18" Scale="0" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'db_banking.dbo.UserEnd_Table' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="UserEnd_Table">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="username" Type="nvarchar" MaxLength="50" />
+          <Property Name="password" Type="nvarchar" MaxLength="50" />
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="db_bankingModelStoreContainer">
+          <EntitySet Name="Admin_Table" EntityType="Self.Admin_Table" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Customer_Table" EntityType="Self.Customer_Table" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Debit_Table" EntityType="Self.Debit_Table" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Depotist_Table" EntityType="Self.Depotist_Table" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Employee_Table" EntityType="Self.Employee_Table" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FD_Table" EntityType="Self.FD_Table" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [FD_Table].[SNO] AS [SNO], 
+    [FD_Table].[CustomerNo] AS [CustomerNo], 
+    [FD_Table].[Mode] AS [Mode], 
+    [FD_Table].[Rupees] AS [Rupees], 
+    [FD_Table].[Period] AS [Period], 
+    [FD_Table].[InterestRate] AS [InterestRate], 
+    [FD_Table].[MaturityDate] AS [MaturityDate], 
+    [FD_Table].[MaturityAmout] AS [MaturityAmout], 
+    [FD_Table].[StartDate] AS [StartDate]
+    FROM [dbo].[FD_Table] AS [FD_Table]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="Transfer_Table" EntityType="Self.Transfer_Table" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Transfer_Table].[SNO] AS [SNO], 
+    [Transfer_Table].[Date] AS [Date], 
+    [Transfer_Table].[CustomerNo] AS [CustomerNo], 
+    [Transfer_Table].[Name] AS [Name], 
+    [Transfer_Table].[Balance] AS [Balance], 
+    [Transfer_Table].[ToTransfer] AS [ToTransfer]
+    FROM [dbo].[Transfer_Table] AS [Transfer_Table]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="UserEnd_Table" EntityType="Self.UserEnd_Table" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [UserEnd_Table].[username] AS [username], 
+    [UserEnd_Table].[password] AS [password], 
+    [UserEnd_Table].[id] AS [id]
+    FROM [dbo].[UserEnd_Table] AS [UserEnd_Table]</DefiningQuery>
+          </EntitySet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="db_bankingModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Admin_Table">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="username" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="password" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityContainer Name="db_bankingEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Admin_Table" EntityType="Self.Admin_Table" />
+          <EntitySet Name="Debit_Table" EntityType="db_bankingModel.Debit_Table" />
+          <EntitySet Name="Depotist_Table" EntityType="db_bankingModel.Depotist_Table" />
+          <EntitySet Name="Employee_Table" EntityType="db_bankingModel.Employee_Table" />
+          <EntitySet Name="FD_Table" EntityType="db_bankingModel.FD_Table" />
+          <EntitySet Name="Transfer_Table" EntityType="db_bankingModel.Transfer_Table" />
+          <EntitySet Name="UserEnd_Table" EntityType="db_bankingModel.UserEnd_Table" />
+          <EntitySet Name="Customer_Table" EntityType="db_bankingModel.Customer_Table" />
+        </EntityContainer>
+        <EntityType Name="Debit_Table">
+          <Key>
+            <PropertyRef Name="SNO" />
+          </Key>
+          <Property Name="SNO" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Date" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CustomerNo" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="OldBalance" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Mode" Type="Binary" MaxLength="50" FixedLength="false" />
+          <Property Name="DebitAmount" Type="Decimal" Precision="18" Scale="0" />
+        </EntityType>
+        <EntityType Name="Depotist_Table">
+          <Key>
+            <PropertyRef Name="SNO" />
+          </Key>
+          <Property Name="SNO" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CustomerNo" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="OldBalance" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Mode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DipositAmout" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Date" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Employee_Table">
+          <Key>
+            <PropertyRef Name="employee_id" />
+          </Key>
+          <Property Name="employee_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Birth" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Address" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="username" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="FD_Table">
+          <Key>
+            <PropertyRef Name="SNO" />
+          </Key>
+          <Property Name="SNO" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CustomerNo" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Mode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Rupees" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Period" Type="Int32" />
+          <Property Name="InterestRate" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="MaturityDate" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MaturityAmout" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="StartDate" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Transfer_Table">
+          <Key>
+            <PropertyRef Name="SNO" />
+          </Key>
+          <Property Name="SNO" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Date" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CustomerNo" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Balance" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="ToTransfer" Type="Decimal" Precision="18" Scale="0" />
+        </EntityType>
+        <EntityType Name="UserEnd_Table">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="username" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="Customer_Table">
+          <Key>
+            <PropertyRef Name="CustomerNo" />
+          </Key>
+          <Property Name="CustomerNo" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DOB" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Address" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="City" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Picture" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="Balance" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Birth" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Gender" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Date" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="db_bankingModelStoreContainer" CdmEntityContainer="db_bankingEntities">
+          <EntitySetMapping Name="Admin_Table">
+            <EntityTypeMapping TypeName="db_bankingModel.Admin_Table">
+              <MappingFragment StoreEntitySet="Admin_Table">
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Debit_Table">
+            <EntityTypeMapping TypeName="db_bankingModel.Debit_Table">
+              <MappingFragment StoreEntitySet="Debit_Table">
+                <ScalarProperty Name="DebitAmount" ColumnName="DebitAmount" />
+                <ScalarProperty Name="Mode" ColumnName="Mode" />
+                <ScalarProperty Name="OldBalance" ColumnName="OldBalance" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="CustomerNo" ColumnName="CustomerNo" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="SNO" ColumnName="SNO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Depotist_Table">
+            <EntityTypeMapping TypeName="db_bankingModel.Depotist_Table">
+              <MappingFragment StoreEntitySet="Depotist_Table">
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="DipositAmout" ColumnName="DipositAmout" />
+                <ScalarProperty Name="Mode" ColumnName="Mode" />
+                <ScalarProperty Name="OldBalance" ColumnName="OldBalance" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="CustomerNo" ColumnName="CustomerNo" />
+                <ScalarProperty Name="SNO" ColumnName="SNO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Employee_Table">
+            <EntityTypeMapping TypeName="db_bankingModel.Employee_Table">
+              <MappingFragment StoreEntitySet="Employee_Table">
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Birth" ColumnName="Birth" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="employee_id" ColumnName="employee_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FD_Table">
+            <EntityTypeMapping TypeName="db_bankingModel.FD_Table">
+              <MappingFragment StoreEntitySet="FD_Table">
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+                <ScalarProperty Name="MaturityAmout" ColumnName="MaturityAmout" />
+                <ScalarProperty Name="MaturityDate" ColumnName="MaturityDate" />
+                <ScalarProperty Name="InterestRate" ColumnName="InterestRate" />
+                <ScalarProperty Name="Period" ColumnName="Period" />
+                <ScalarProperty Name="Rupees" ColumnName="Rupees" />
+                <ScalarProperty Name="Mode" ColumnName="Mode" />
+                <ScalarProperty Name="CustomerNo" ColumnName="CustomerNo" />
+                <ScalarProperty Name="SNO" ColumnName="SNO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Transfer_Table">
+            <EntityTypeMapping TypeName="db_bankingModel.Transfer_Table">
+              <MappingFragment StoreEntitySet="Transfer_Table">
+                <ScalarProperty Name="ToTransfer" ColumnName="ToTransfer" />
+                <ScalarProperty Name="Balance" ColumnName="Balance" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="CustomerNo" ColumnName="CustomerNo" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="SNO" ColumnName="SNO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserEnd_Table">
+            <EntityTypeMapping TypeName="db_bankingModel.UserEnd_Table">
+              <MappingFragment StoreEntitySet="UserEnd_Table">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="username" ColumnName="username" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Customer_Table">
+            <EntityTypeMapping TypeName="db_bankingModel.Customer_Table">
+              <MappingFragment StoreEntitySet="Customer_Table">
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Birth" ColumnName="Birth" />
+                <ScalarProperty Name="Balance" ColumnName="Balance" />
+                <ScalarProperty Name="Picture" ColumnName="Picture" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="PhoneNo" ColumnName="PhoneNo" />
+                <ScalarProperty Name="DOB" ColumnName="DOB" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="CustomerNo" ColumnName="CustomerNo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -1,6 +1,6 @@
 ﻿namespace WindowsFormsApp1.View
 {
-    partial class Menu
+    partial class MenuBanking
     {
         /// <summary>
         /// Required designer variable.

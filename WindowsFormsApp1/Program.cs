@@ -4,7 +4,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using WindowsFormsApp1.View;
-using Menu = WindowsFormsApp1.View.Menu;
+using Menu = WindowsFormsApp1.View.MenuBanking;
+using WindowsFormsApp1.View.Customer;
 
 namespace WindowsFormsApp1
 {
@@ -18,7 +19,7 @@ namespace WindowsFormsApp1
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Menu());
+            Application.Run(new createCumtomer());
         }
     }
 }

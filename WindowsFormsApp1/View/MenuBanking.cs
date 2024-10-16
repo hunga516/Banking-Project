@@ -11,9 +11,9 @@ using WindowsFormsApp1.View.Customer;
 
 namespace WindowsFormsApp1.View
 {
-    public partial class Menu : Form
+    public partial class MenuBanking : Form
     {
-        public Menu()
+        public MenuBanking()
         {
             InitializeComponent();
 

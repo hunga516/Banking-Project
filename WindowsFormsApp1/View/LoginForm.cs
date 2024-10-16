@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using WindowsFormsApp1.View;
 
 namespace WindowsFormsApp1
 {
@@ -80,6 +81,36 @@ namespace WindowsFormsApp1
         private void helpToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            db_bankingEntities dbe = new db_bankingEntities();
+            if (!string.IsNullOrEmpty(txtUsername.Text) && !string.IsNullOrEmpty(txtPassword.Text))
+            {
+                var user1 = dbe.Admin_Table.FirstOrDefault(a => a.username.Equals(txtUsername.Text)); // Thêm dấu chấm phẩy ở đây
+                if (user1 != null)
+                {
+                    if (user1.password.Trim().Equals(txtPassword.Text.Trim()))
+                    {
+                        MenuBanking menu = new MenuBanking();
+                        menu.ShowDialog();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Username: " + txtUsername.Text + ", Password Entered: " + txtPassword.Text + ", Password in DB: " + user1.password);
+                        MessageBox.Show("Mật khẩu không chính xác");
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Tài khoản không tồn tại");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Vui lòng nhập username và password"); // Sửa dấu nháy đơn thành nháy kép
+            }
         }
     }
 }
